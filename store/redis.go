@@ -7,7 +7,7 @@ import (
 	"strings"
 
 	"github.com/owenfeehan/geocoding-nominatim-cache/location"
-	"github.com/redis/go-redis/v9"
+	redis "github.com/redis/go-redis/v9"
 	"github.com/rs/zerolog/log"
 )
 

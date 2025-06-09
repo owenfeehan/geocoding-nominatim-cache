@@ -7,7 +7,7 @@ import (
 
 	"github.com/rs/zerolog/log"
 
-	"github.com/dgraph-io/badger/v4"
+	badger "github.com/dgraph-io/badger/v4"
 	"github.com/getlantern/appdir"
 	location "github.com/owenfeehan/geocoding-nominatim-cache/location"
 )
