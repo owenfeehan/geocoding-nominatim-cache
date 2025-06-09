@@ -9,7 +9,7 @@ import (
 )
 
 // queryLocation retrieves a location for the given query, using cache if possible.
-func queryLocation(locStore store.LocationStore, locFettcher fetcher.LocationFetcher, query string) (location.Location, error) {
+func queryLocation(locStore store.LocationStore, locFetcher fetcher.LocationFetcher, query string) (location.Location, error) {
 	cacheKey := locStore.BuildKey(query)
 
 	// Try to get location from cache
@@ -22,7 +22,7 @@ func queryLocation(locStore store.LocationStore, locFettcher fetcher.LocationFet
 	}
 
 	// If not cached, fetch from Nominatim API
-	loc, err = locFettcher.Fetch(query)
+	loc, err = locFetcher.Fetch(query)
 	if err != nil {
 		return location.Location{}, fmt.Errorf("failed to fetch location: %w", err)
 	}

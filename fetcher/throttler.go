@@ -29,11 +29,9 @@ func NewThrottler(delegate LocationFetcher, minDelay time.Duration) LocationFetc
 func (t *throttler) Fetch(query string) ([]location.Location, error) {
 	t.mu.Lock()
 	now := time.Now()
-	wait := time.Second - now.Sub(t.lastCall)
+	wait := t.minDelay - now.Sub(t.lastCall)
 	if wait > 0 {
-		t.mu.Unlock()
 		time.Sleep(wait)
-		t.mu.Lock()
 	}
 	t.lastCall = time.Now()
 	t.mu.Unlock()
