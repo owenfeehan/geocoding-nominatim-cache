@@ -37,6 +37,8 @@ func (f *nominatimFetcher) Fetch(query string) ([]location.Location, error) {
 
 	body, _ := io.ReadAll(resp.Body)
 
+	log.Debug().Str("Nominatim response", string(body)).Msg("Retrieving response from Nominatim")
+
 	var data []location.Location
 	if err := json.Unmarshal(body, &data); err != nil {
 		return nil, fmt.Errorf("cannot parse Nominatim response: %w\nThe response body was %s", err, string(body))

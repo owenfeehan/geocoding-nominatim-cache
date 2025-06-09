@@ -1,6 +1,7 @@
 package store
 
 import (
+	"reflect"
 	"testing"
 
 	location "github.com/owenfeehan/geocoding-nominatim-cache/location"
@@ -20,9 +21,23 @@ func TestBadgerStore(t *testing.T) {
 	testWithStore(t, store)
 }
 
+// testWithStore tests the provided LocationStore implementation by performing a series of queries and checking the results.
 func testWithStore(t *testing.T, store LocationStore) {
-	key := store.BuildKey("Brussels")
-	locs := []location.Location{{DisplayName: "Brussels, Belgium", Latitude: "50.8503", Longitude: "4.3517"}}
+	// Query that returns no locations
+	testLocation(t, store, "Unknown place", []location.Location{})
+
+	// Query that returns a single location
+	location_belgium := location.Location{DisplayName: "Brussels, Belgium", Latitude: "50.8503", Longitude: "4.3517"}
+	testLocation(t, store, "Brussels", []location.Location{location_belgium})
+
+	// Query that returns a two locations
+	location_wisconsin := location.Location{DisplayName: "Brussels, Wisconsin", Latitude: "10.8503", Longitude: "14.3517"}
+	testLocation(t, store, "Brussels", []location.Location{location_belgium, location_wisconsin})
+}
+
+// testLocation tests the LocationStore implementation by storing and retrieving locations for a given query.
+func testLocation(t *testing.T, store LocationStore, query string, locs []location.Location) {
+	key := store.BuildKey(query)
 
 	// Store locations in the cache
 	err := store.Set(key, locs)
@@ -35,7 +50,7 @@ func testWithStore(t *testing.T, store LocationStore) {
 	if err != nil {
 		t.Fatalf("Get failed: %v", err)
 	}
-	if len(got) == 0 || got[0].DisplayName != locs[0].DisplayName {
+	if !reflect.DeepEqual(got, locs) {
 		t.Errorf("Expected %v, got %v", locs[0], got)
 	}
 }
