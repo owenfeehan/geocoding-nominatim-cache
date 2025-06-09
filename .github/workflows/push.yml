@@ -16,7 +16,7 @@ jobs:
       - name: Set up Go
         uses: actions/setup-go@v5
         with:
-          go-version: '1.22'  # or your desired version
+          go-version: '1.24.3'
 
       - name: Check formatting with gofmt
         run: |
@@ -30,7 +30,7 @@ jobs:
       - name: Install golangci-lint
         uses: golangci/golangci-lint-action@v3
         with:
-          version: v1.55.2  # choose latest stable version
+          version: latest
 
       - name: Run golangci-lint
         run: golangci-lint run
