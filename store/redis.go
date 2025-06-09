@@ -53,9 +53,6 @@ func (c *redisStore) Get(key string) ([]location.Location, error) {
 	if err != nil {
 		return nil, err
 	}
-	if len(result) == 0 {
-		return nil, nil
-	}
 	return result, nil
 }
 
