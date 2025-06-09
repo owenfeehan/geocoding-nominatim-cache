@@ -1,0 +1,55 @@
+basePath: /
+definitions:
+  location.Location:
+    properties:
+      display_name:
+        type: string
+      lat:
+        type: string
+      lon:
+        type: string
+    type: object
+  main.ErrorResponse:
+    properties:
+      error:
+        example: invalid input
+        type: string
+    type: object
+host: localhost:8080
+info:
+  contact: {}
+  description: An API for caching geocoding locations as fetched from Nominatim.
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  title: Owen's Geocoding API
+  version: "1.0"
+paths:
+  /locations/{place}:
+    get:
+      consumes:
+      - application/json
+      description: get location coordinates and a canonical placename from a placename-query-string
+      parameters:
+      - description: query indicating a place or address
+        in: path
+        name: place
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/location.Location'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/main.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/main.ErrorResponse'
+      summary: Get location coordinates for a placename
+swagger: "2.0"
