@@ -114,6 +114,6 @@ func createFetcher(throttle int) (fetcher.LocationFetcher, error) {
 	// As per the Nominatim API usage policy, we should not send requests more frequently than once every 1 second.
 	// We throttle to a 2 second delay to be conservative and avoid hitting the rate limit.
 	// See https://operations.osmfoundation.org/policies/nominatim/
-	throttle_duration := time.Duration(throttle) * time.Millisecond
-	return fetcher.NewThrottler(fetcher.NewNomnatimFetcher(), throttle_duration), nil
+	throttleDuration := time.Duration(throttle) * time.Millisecond
+	return fetcher.NewThrottler(fetcher.NewNomnatimFetcher(), throttleDuration), nil
 }
