@@ -37,7 +37,7 @@ func (m *mockFetcher) Fetch(query string) ([]location.Location, error) {
 	return m.fetchFunc(query)
 }
 
-func TestQueryLocation_CacheHit(t *testing.T) {
+func TestQueryLocationCacheHit(t *testing.T) {
 	want := location.Location{DisplayName: testQuery}
 	store := &mockStore{
 		getFunc: func(key string) ([]location.Location, error) {
@@ -59,7 +59,7 @@ func TestQueryLocation_CacheHit(t *testing.T) {
 	}
 }
 
-func TestQueryLocation_CacheMissAndFetch(t *testing.T) {
+func TestQueryLocationCacheMissAndFetch(t *testing.T) {
 	want := location.Location{DisplayName: testQuery}
 	store := &mockStore{
 		getFunc: func(key string) ([]location.Location, error) {
@@ -86,7 +86,7 @@ func TestQueryLocation_CacheMissAndFetch(t *testing.T) {
 	}
 }
 
-func TestQueryLocation_ErrorCases(t *testing.T) {
+func TestQueryLocationErrorCases(t *testing.T) {
 	storeErr := errors.New("store error")
 	fetchErr := errors.New("fetch error")
 

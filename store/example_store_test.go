@@ -6,7 +6,7 @@ import (
 	location "github.com/owenfeehan/geocoding-nominatim-cache/location"
 )
 
-func ExampleLocationStore_usage() {
+func ExampleLocationStoreUsage() {
 	locations := []location.Location{{DisplayName: "Brussels, Belgium", Latitude: "50.8503", Longitude: "4.3517"}}
 
 	store := NewMemoryStore()

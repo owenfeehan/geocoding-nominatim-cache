@@ -22,7 +22,7 @@ func (m *mockFetcher) Fetch(query string) ([]location.Location, error) {
 	return []location.Location{{DisplayName: query}}, nil
 }
 
-func TestThrottler_RespectsMinDelay(t *testing.T) {
+func TestThrottlerRespectsMinDelay(t *testing.T) {
 	mock := &mockFetcher{}
 	throttler := NewThrottler(mock, 200*time.Millisecond)
 
@@ -34,7 +34,7 @@ func TestThrottler_RespectsMinDelay(t *testing.T) {
 	assertCalls(t, mock, 2)
 }
 
-func TestThrottler_Concurrent(t *testing.T) {
+func TestThrottlerConcurrent(t *testing.T) {
 	mock := &mockFetcher{}
 	throttler := NewThrottler(mock, 100*time.Millisecond)
 
