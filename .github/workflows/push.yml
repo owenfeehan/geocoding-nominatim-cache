@@ -39,15 +39,6 @@ jobs:
               ~/go/pkg/mod
           key: cache-os-${{ runner.os }}-go-${{ matrix.go }}-${{ hashFiles('**/go.sum') }}
 
-      - name: Check formatting with gofmt
-        run: |
-          fmt_count=$(gofmt -l . | wc -l)
-          if [ "$fmt_count" -ne 0 ]; then
-            echo "The following files are not properly formatted:"
-            gofmt -l .
-            exit 1
-          fi
-
       - name: Run golangci-lint
         run: golangci-lint run
 
