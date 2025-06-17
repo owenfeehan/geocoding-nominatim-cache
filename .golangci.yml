@@ -1,0 +1,38 @@
+# .golangci.yml
+
+run:
+  timeout: 5m
+  tests: true
+
+linters:
+  enable:
+    - gofmt         # Enforce Go formatting
+    - goimports     # Format + sort imports
+    - revive        # Lightweight linter for style rules
+    - stylecheck    # Style guide enforcement
+    - govet         # Go vet (static analysis)
+    - errcheck      # Check for unchecked errors
+    - staticcheck   # Powerful general-purpose analyzer
+    - gosimple      # Simplification suggestions
+    - unused        # Detect unused code
+
+linters-settings:
+  gofmt:
+    simplify: true
+
+  revive:
+    severity: warning
+
+issues:
+  exclude-use-default: false
+  max-issues-per-linter: 0
+  max-same-issues: 0
+  exclude-rules:
+    - path: _test\.go
+      linters:
+        - errcheck
+        - staticcheck
+  # Optional: Ignore specific false positives
+  # exclude:
+  #   - "error return value not checked.*"
+

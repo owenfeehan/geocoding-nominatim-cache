@@ -11,10 +11,10 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
-// NominatimFetcher implements LocationFetcher using the Nominatim API.
+// nominatimFetcher implements LocationFetcher using the Nominatim API.
 type nominatimFetcher struct{}
 
-// Creates a fetcher that geocodes locations using the Nominatim API.
+// NewNomnatimFetcher creates a fetcher that geocodes locations using the Nominatim API.
 func NewNomnatimFetcher() LocationFetcher {
 	return &nominatimFetcher{}
 }
@@ -33,7 +33,11 @@ func (f *nominatimFetcher) Fetch(query string) ([]location.Location, error) {
 	if err != nil {
 		return nil, err
 	}
-	defer resp.Body.Close()
+	defer func() {
+		if err := resp.Body.Close(); err != nil {
+			log.Printf("Error closing response body: %v", err)
+		}
+	}()
 
 	body, _ := io.ReadAll(resp.Body)
 

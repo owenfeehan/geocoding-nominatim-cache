@@ -26,13 +26,18 @@ jobs:
       - name: Verify Go version
         run: go version          
 
+      - name: Install golangci-lint
+        uses: golangci/golangci-lint-action@v3
+        with:
+          version: latest
+          
       - name: Cache Go modules
         uses: actions/cache@v4
         with:
           path: |
               ~/.cache/go-build
               ~/go/pkg/mod
-          key: os-${{ runner.os }}-go-${{ matrix.go }}-${{ hashFiles('**/go.sum') }}
+          key: cache-os-${{ runner.os }}-go-${{ matrix.go }}-${{ hashFiles('**/go.sum') }}
 
       - name: Check formatting with gofmt
         run: |
@@ -42,11 +47,6 @@ jobs:
             gofmt -l .
             exit 1
           fi
-
-      - name: Install golangci-lint
-        uses: golangci/golangci-lint-action@v3
-        with:
-          version: latest
 
       - name: Run golangci-lint
         run: golangci-lint run

@@ -54,7 +54,11 @@ func main() {
 	}
 
 	// Ensure the store is closed when the application exits
-	defer locStore.Close()
+	defer func() {
+		if err := locStore.Close(); err != nil {
+			log.Printf("Error closing the location-store: %v", err)
+		}
+	}()
 
 	// Create a fetcher for locations, using Nominatim API with throttling.
 	locFetcher, err := createFetcher(*throttle)
