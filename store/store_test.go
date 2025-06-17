@@ -30,7 +30,7 @@ func testWithStore(t *testing.T, store LocationStore) {
 	locationBelgium := location.Location{DisplayName: "Brussels, Belgium", Latitude: "50.8503", Longitude: "4.3517"}
 	testLocation(t, store, "Brussels", []location.Location{locationBelgium})
 
-	// Query that returns a two locations
+	// Query that returns two locations
 	locationWisconsin := location.Location{DisplayName: "Brussels, Wisconsin", Latitude: "10.8503", Longitude: "14.3517"}
 	testLocation(t, store, "Brussels", []location.Location{locationBelgium, locationWisconsin})
 }
