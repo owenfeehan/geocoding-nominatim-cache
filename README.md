@@ -14,6 +14,8 @@ The service allows a database of geolocated data to be built up over time within
 
 The RESTful end-point is compliant with Swagger/OpenAPI. See `http://localhost:8080/swagger/index.html` (or whatever address the service becomes bound to) and `http://localhost:8080/swagger/doc.json`. The [OpenAPI generator](https://github.com/OpenAPITools/openapi-generator) can quickly create an automated client across many languages and frameworks.
 
+It requires Go v1.21 at a minimum.
+
 ## License
 
 MIT, see `LICENSE.txt`.
