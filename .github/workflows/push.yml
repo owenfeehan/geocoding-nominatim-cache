@@ -6,13 +6,13 @@ on:
 
 jobs:
   build:
-    name: Format, Lint, Test on ${{ matrix.os }} with Go ${{ matrix.go }}
+    name: Build on ${{ matrix.os }} with Go ${{ matrix.go }}
     runs-on: ubuntu-latest
     
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
-        go: [1.18 1.20 1.21, 1.22, 1.23, 1.24]
+        go: [1.18, 1.20, 1.21, 1.22, 1.23, 1.24]
 
     steps:
       - name: Checkout code
