@@ -6,7 +6,7 @@ on:
 
 jobs:
   build:
-    name: Format, Lint, Test: ${{ matrix.os }} with Go ${{ matrix.go }}
+    name: Format, Lint, Test on ${{ matrix.os }} with Go ${{ matrix.go }}
     runs-on: ubuntu-latest
     
     strategy:
@@ -22,6 +22,9 @@ jobs:
         uses: actions/setup-go@v5
         with:
           go-version: ${{ matrix.go }}
+          
+      - name: Verify Go version
+        run: go version          
 
       - name: Cache Go modules
         uses: actions/cache@v4
