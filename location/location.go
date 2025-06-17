@@ -1,3 +1,4 @@
+// Package location contains classes relevant to storing, displaying or processing a geocoding result.
 package location
 
 // Location represents a Nominatim geocoding result.

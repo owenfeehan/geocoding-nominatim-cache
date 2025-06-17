@@ -1,0 +1,2 @@
+# Ensure Go files always use LF endings in the repo
+*.go text eol=lf

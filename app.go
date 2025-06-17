@@ -8,14 +8,13 @@ import (
 	"github.com/owenfeehan/geocoding-nominatim-cache/store"
 )
 
-// The global state needed across the handlers
-// app holds the dependencies for the HTTP handlers.
+// app contains the global state needed across the handlers
 type app struct {
 	Store   store.LocationStore
 	Fetcher fetcher.LocationFetcher
 }
 
-// Needed to document the error response for Swagger
+// ErrorResponse is needed to document the error response for Swagger
 type ErrorResponse struct {
 	Error string `json:"error" example:"invalid input"`
 }

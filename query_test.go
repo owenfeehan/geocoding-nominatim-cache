@@ -40,12 +40,12 @@ func (m *mockFetcher) Fetch(query string) ([]location.Location, error) {
 func TestQueryLocationCacheHit(t *testing.T) {
 	want := location.Location{DisplayName: testQuery}
 	store := &mockStore{
-		getFunc: func(key string) ([]location.Location, error) {
+		getFunc: func(_ string) ([]location.Location, error) {
 			return []location.Location{want}, nil
 		},
 	}
 	fetcher := &mockFetcher{
-		fetchFunc: func(query string) ([]location.Location, error) {
+		fetchFunc: func(_ string) ([]location.Location, error) {
 			t.Fatal("fetcher should not be called on cache hit")
 			return nil, nil
 		},
