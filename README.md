@@ -22,6 +22,14 @@ MIT, see `LICENSE.txt`.
 
 ## Usage
 
+### From a compiled release 
+
+With a compiled [release](https://github.com/owenfeehan/geocoding-nominatim-cache/releases), just run the binary with appropriate arguments e.g.
+
+> .\geocoding-nominatim-cache.exe --debug
+
+### From the cloned repo
+
 Start the service with either:
 
 > go run main.go --debug
@@ -30,7 +38,9 @@ or by building a binary with:
 
 > go build -o geocoding-nominatim-cache main.go --debug
 
-The `--debug` arugment can be dropped for production use.
+### Dropping the debug argument
+
+The `--debug` argument can be dropped for production use.
 
 ### CLI Arguments
 
