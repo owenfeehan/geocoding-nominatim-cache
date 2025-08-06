@@ -9,7 +9,7 @@ import location "github.com/owenfeehan/geocoding-nominatim-cache/location"
 //
 // Example:
 //
-//	NewNomnatimFetcher().Fetch("Galway, Ireland")
+//	LocationFetcher().Fetch("Galway, Ireland")
 type LocationFetcher interface {
 	Fetch(query string) ([]location.Location, error)
 }
